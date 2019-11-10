@@ -77,10 +77,7 @@ namespace DeansOffice
             {
                 SubjectsList.Add(subject);
             }
-
-            //   MessageBox.Show(Subjects.Count.ToString());
-
-
+          
             if (NewStudentFirstName == null || NewStudentLastName == "" || NewStudentIndexNumber == "" || NewStudentStudies == null || NrIndeksuIsInvalid(NewStudentIndexNumber))
             {
                 MessageBox.Show("Niewłaściwe dane");
@@ -114,17 +111,13 @@ namespace DeansOffice
             }
 
             var NewStudentStudies = (Study)CBI.Content;
-            //List<Subject> SubjectsList = new List<Subject>();
             var SubjectsList = new HashSet<Subject>();
 
             foreach (Subject subject in SubjectsListBox.SelectedItems)
             {
                 SubjectsList.Add(subject);
             }
-
-            //   MessageBox.Show(Subjects.Count.ToString());
-
-
+            
             if (NewStudentFirstName == null || NewStudentLastName == "" || NewStudentIndexNumber == "" || NewStudentStudies == null || NrIndeksuIsInvalid(NewStudentIndexNumber))
             {
                 MessageBox.Show("Niewłaściwe dane");
@@ -180,29 +173,6 @@ namespace DeansOffice
                         StudiesComboBox.SelectedItem = item;
                     }
                 }
-
-             /*   if (student.Subjects.FirstOrDefault() != null)
-                {
-                    foreach (var Subject in student.Subjects)
-                    {
-                        //  MessageBox.Show(SubjectId.ToString());
-                        //  SubjectsListBox.SelectedValue = student.Subjects;
-
-                       // Subject subject = Subject.Extension[SubjectId];
-                        SubjectsListBox.SelectedItem = Subject;
-
-
-                        /* foreach (var item in SubjectsListBox.Items)
-                         {
-                             ListBoxItem items = (ListBoxItem) item;
-                             Subject subject = (Subject)items.Content;
-
-                             if (subject.IdSubject == SubjectId)
-                                 items.IsSelected = true;
-                         }*/
-          //          }
-         //       }
-
             }
 
             this.Show();

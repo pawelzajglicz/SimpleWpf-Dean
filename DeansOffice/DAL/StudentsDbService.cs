@@ -30,7 +30,6 @@ namespace DeansOffice.DAL
                     {
                         while (reader.Read())
                         {
-                            // MessageBox.Show("Coś się zmieniło w kolekcji.");
                             var DBIdStudent = (int)reader["IdStudent"];
                             var DBFirstName = reader["firstName"].ToString();
                             var DBLastName = reader["lastName"].ToString();
@@ -67,28 +66,11 @@ namespace DeansOffice.DAL
                     {
                         while (reader.Read())
                         {
-                            // MessageBox.Show("Coś się zmieniło w kolekcji.");
                             var DBIdStudent = (int)reader["IdStudent"];
                             var DBIdSubject = (int)reader["IdSubject"];
 
                             //MessageBox.Show(DBIdStudent.ToString());
                             var student = Student.ExtensionStudents[DBIdStudent];
-                            /*Student student = null;
-                            foreach (KeyValuePair<int, Student> item in Student.ExtensionStudents)
-                            {
-                              //  MessageBox.Show("" + item.Key.ToString() + " " + DBIdStudent.ToString() + " " + item.Value.ToString() + (item.Key == DBIdStudent).ToString());
-                                if (item.Key == DBIdStudent)
-                                {
-                                    student = item.Value;
-
-                                    break;
-                                }
-                            }
-
-                            if (student == null)
-                            {
-                                MessageBox.Show(DBIdStudent.ToString());
-                            }*/
                             student.AddSubjectId(DBIdSubject);
                         }
                     }
@@ -110,13 +92,7 @@ namespace DeansOffice.DAL
             {
                 con.Open();
                 SqlCommand command = new SqlCommand();
-
-                /* command.CommandText = "UPDATE apbd.Student " +
-                     "SET FirstName = @FirstName, LastName = @LastName, Address = @Address, IndexNumber = @IndexNumber, IdStudies = @IdStudies " +
-                     "WHERE IdStudent = 83" ;*/
-
-                // command.CommandText = "UPDATE apbd.Student SET apbd.Student.FirstName = 'aa', apbd.Student.LastName = 'bbb', apbd.Student.Address = 'ccc', apbd.Student.IndexNumber = 's12', apbd.Student.IdStudies = 1  WHERE apbd.Student.IdStudent = 83;";
-
+                
                 command.CommandText = "UPDATE apbd.Student " +
                    "SET FirstName = @FirstName, LastName = @LastName, Address = @Address, IndexNumber = @IndexNumber, IdStudies = @IdStudies WHERE IdStudent = @ModifiedStudentId";
 
@@ -211,19 +187,6 @@ namespace DeansOffice.DAL
 
                 if (IdStudentSubjectsToRemove.Count > 0)
                 {
-                    /* command.CommandText = "DELETE FROM apbd.Student_Subject WHERE apbd.Student_Subject.IdStudentSubject IN (@IDsToRemove) ;";
-
-                     string IDsToRemove = "";
-
-                     for (int i = 0; i < IdStudentSubjectsToRemove.Count() - 1; i++)
-                     {
-                         IDsToRemove += IdStudentSubjectsToRemove[i].ToString() + ", ";
-                     }
-                     IDsToRemove += IdStudentSubjectsToRemove[IdStudentSubjectsToRemove.Count() - 1].ToString();
-
-                     command.Parameters.Clear();
-                     command.Parameters.AddWithValue("IDsToRemove", IDsToRemove);
-                     command.ExecuteNonQuery();*/
                     for (int i = 0; i < IdStudentSubjectsToRemove.Count(); i++)
                     {
                         command.CommandText = "DELETE FROM apbd.Student_Subject WHERE apbd.Student_Subject.IdStudentSubject IN(@IDToRemove); ";
@@ -261,10 +224,8 @@ namespace DeansOffice.DAL
                 command.ExecuteNonQuery();
 
                 command.CommandText = "select MAX(apbd.Student.IdStudent) from apbd.Student";
-                //select scope_identity
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
-
                     while (reader.Read())
                     {
                         var DBLastStudentId = (int)reader[""];
@@ -369,7 +330,6 @@ namespace DeansOffice.DAL
                     var tran = con.BeginTransaction();
                     com.Connection = con;
                     com.Transaction = tran;
-                    //com.CommandText = "delete from apbd.Student where id in @studentnos";
 
                     foreach (var id in SelectedStudentsId)
                     {

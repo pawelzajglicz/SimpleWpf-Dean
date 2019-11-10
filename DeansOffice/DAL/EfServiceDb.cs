@@ -16,7 +16,6 @@ namespace DeansOffice.DAL
 
         internal static ObservableCollection<Student> LoadStudentsDataFromDb()
         {
-           // var context = new PjatkDb();
             var res = context.Students.ToList();
 
             ObservableCollection<Student> ListaStudentow = new ObservableCollection<Student>(res);
@@ -25,7 +24,6 @@ namespace DeansOffice.DAL
 
         internal static ObservableCollection<Study> LoadStudiesDataFromDb()
         {
-           // var context = new PjatkDb();
             var res = context.Studies.ToList();
 
             ObservableCollection<Study> ListaStudiow = new ObservableCollection<Study>(res);
@@ -34,7 +32,6 @@ namespace DeansOffice.DAL
 
         internal static ObservableCollection<Subject> LoadSubjectsDataFromDb()
         {
-           // var context = new PjatkDb();
             var res = context.Subjects.ToList();
 
             ObservableCollection<Subject> ListaStudiow = new ObservableCollection<Subject>(res);
@@ -43,47 +40,9 @@ namespace DeansOffice.DAL
 
         internal static void AddStudent(Student newStudent)
         {
-            //   var context = new PjatkDb();
-
             context.Students.Add(newStudent);
 
             context.SaveChanges();
-
-            /* var subs = newStudent.Subjects;
-             newStudent.Subjects = null;
-
-
-             foreach (Subject sub in subs)
-             {
-                 var studsub = new Student_Subject()
-                 {
-                     IdStudent = newStudent.IdStudent,
-                     IdSubject = sub.IdSubject
-                 };
-
-                 context.Student_Subject.Add(studsub);
-             }
-             */
-
-            /* var newStudies = new Study()
-             {
-                 IdStudies = newStudent.IdStudies
-             };
-             //context.Studies.Attach(newStudies);*/
-
-
-            //var subs = newStudent.Subjects;
-            /* newStudent.Subjects = null;
-
-              context.SaveChanges();
-
-              newStudent.Subjects = subs; */
-
-            /*  foreach (Subject sub in newStudent.Subjects)
-              {
-                  sub.Student_Subjects.Add(newStudent);
-              }*/
-
         }
 
 
@@ -92,8 +51,6 @@ namespace DeansOffice.DAL
         {
             try
             {
-         //       var context = new PjatkDb();
-
                 foreach (var id in SelectedStudentsId)
                 {
 
@@ -121,17 +78,9 @@ namespace DeansOffice.DAL
         {
             try
             {
-                //       var context = new PjatkDb();
 
                 foreach (var Student in SelectedStudents)
                 {
-
-                  /*  var delStudent = new Student()
-                    {
-                        IdStudent = id
-                    };
-
-                    context.Students.Attach(delStudent);*/
                     context.Students.Remove(Student);  
                 }
 
