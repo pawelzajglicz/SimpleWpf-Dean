@@ -49,7 +49,6 @@ namespace DeansOffice
                     EfServiceDb.AddStudent(NewStudent);
                 } catch (Exception exc)
                 {
-                    //ListaStudentow.Remove(NewStudent);
                     MessageBox.Show(exc.Message);
                     MessageBox.Show("Nie udało się dodać nowego studenta");
                 }
@@ -65,7 +64,6 @@ namespace DeansOffice
                 }
                 catch (Exception exc)
                 {
-                    //    ListaStudentow.Remove(NewStudent);
                     MessageBox.Show(exc.Message);
                     MessageBox.Show("Nie udało się zedytować studenta");
                 }
@@ -89,8 +87,6 @@ namespace DeansOffice
 
             var SelectedStudents = StudentsDataGrid.SelectedItems;
 
-            //var SelectedStudents = StudentsDataGrid.SelectedItems.Cast<Student>.ToList();;
-
             List<int> SelectedStudentsId = new List<int>();
             List<Student> Students = new List<Student>();
 
@@ -100,8 +96,6 @@ namespace DeansOffice
             }
 
             var window = new ConfirmRemoveWindow();
-         //   window.SelectedStudentsId = SelectedStudentsId;
-         //   window.StudentsList = (ObservableCollection<Student>)StudentsDataGrid.ItemsSource;
 
             window.Students = Students;
             window.StudentsList = (ObservableCollection<Student>)StudentsDataGrid.ItemsSource;
@@ -126,12 +120,7 @@ namespace DeansOffice
         private void LoadIntoGridBoxDataFromDB()
         {
             ListaStudentow = EfServiceDb.LoadStudentsDataFromDb();
-
-            foreach (Student st in ListaStudentow)
-            {
-               // MessageBox.Show(st.Subjects.FirstOrDefault().ToString());
-            }
-
+            
             StudentsDataGrid.ItemsSource = ListaStudentow;
         }
 
