@@ -1,0 +1,42 @@
+﻿<Window x:Class="DeansOffice.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DeansOffice"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0"  Content="Lista studentów" FontSize="20"/>
+
+        <DataGrid Grid.Row="1" Name="StudentsDataGrid" AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwisko" Binding="{Binding LastName}" Width="*" />
+                <DataGridTextColumn Header="Imię" Binding="{Binding FirstName}"  Width="*"/>
+                <DataGridTextColumn Header="Numer indeksu" Binding="{Binding IndexNumber}"  Width="*"/>
+                <DataGridTextColumn Header="Adres" Binding="{Binding Address}" Width="*"/>
+                <!--<DataGridTextColumn Header="Studia" Binding="{Binding StudentStudies}" Width="2*" />-->
+                <DataGridTextColumn Header="Studia" Binding="{Binding Study}" Width="2*" />
+            </DataGrid.Columns>
+        </DataGrid>
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            
+            <Label Content="Wybrałeś x studentów" Name="SelectedCounterLabel"/>
+            <Button Grid.Column="1"  Name="AddButton" Margin="7">Dodaj</Button>
+            <Button Grid.Column="2"  Name="RemoveButton" Margin="7">Usuń</Button>
+            <Button Grid.Column="3"  Name="ChangeButton" Margin="7">Zmień</Button>
+        </Grid>
+    </Grid>
+</Window>
